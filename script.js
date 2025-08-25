@@ -16,7 +16,7 @@ for (let y = 0; y < boardSize; y++) {
   }
 }
 
-// Adicionar unidades iniciais
+// Adicionar unidade
 function addUnit(x, y, team) {
   gameState.units.push({ x, y, team, hp: 3 });
   updateBoard();
@@ -30,16 +30,18 @@ function updateBoard() {
   });
 
   gameState.units.forEach(unit => {
-    const cell = document.querySelector(
-      `.cell[data-x="${unit.x}"][data-y="${unit.y}"]`
-    );
     if (unit.hp > 0) {
-      cell.classList.add(unit.team === 'A' ? 'teamA' : 'teamB');
+      const cell = document.querySelector(
+        `.cell[data-x="${unit.x}"][data-y="${unit.y}"]`
+      );
+      if (cell) {
+        cell.classList.add(unit.team === 'A' ? 'teamA' : 'teamB');
+      }
     }
   });
 }
 
-// Exemplo: adicionar 3 unidades para cada time
+// Adiciona 3 unidades para cada time
 addUnit(0, 0, 'A');
 addUnit(1, 0, 'A');
 addUnit(0, 1, 'A');
